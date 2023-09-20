@@ -9,19 +9,32 @@ import RoutineScreen2 from './screens/RoutineScreen/RoutineScreen2';
 import RoutineScreen3 from './screens/RoutineScreen/RoutineScreen3';
 import RoutineScreen4 from './screens/RoutineScreen/RoutineScreen4';
 import HomeScreen from './screens/HomeScreen';
+import MapView from 'react-native-maps';
+
+import {useSelector} from 'react-redux';
+import {selectDestination, selectOrigin} from './slices/navSlice';
 
 const Stack = createNativeStackNavigator();
 
 const pageNum = [1, 2, 3, 4];
 
 export default function NavOptions({navigation}) {
+  const origin = useSelector(selectOrigin);
+  const destination = useSelector(selectDestination);
+
   return (
-    <View style={tw`h-full bg-green-500`}>
-      <View style={tw`h-2/5 w-full flex justify-center items-center`}>
-        <Text>Map</Text>
-      </View>
-      <SafeAreaView style={tw`bg-black rounded-2xl`}>
-        <View style={tw`mb-8`}>
+    <View style={tw`h-full`}>
+      <MapView
+        style={tw`flex-1`}
+        initialRegion={{
+          latitude: 37.78825,
+          longitude: -122.4324,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
+        }}
+      />
+      <SafeAreaView style={tw`bg-black rounded-2xl justify-between h-3/5`}>
+        <View style={tw``}>
           <Text style={tw`text-white font-bold text-xl p-4`}>
             Setting Order
           </Text>
@@ -35,7 +48,7 @@ export default function NavOptions({navigation}) {
             ))}
           </View>
         </View>
-        <View style={tw` h-19/25 rounded-2xl`}>
+        <View style={tw` flex-1 rounded-2xl my-10`}>
           {/* <RoutineScreen4 /> */}
           <Stack.Navigator>
             <Stack.Screen

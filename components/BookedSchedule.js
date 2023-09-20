@@ -1,8 +1,14 @@
-import React from 'react';
+import React, {useRef, useState} from 'react';
 import {View, Text, Image, TouchableOpacity} from 'react-native';
 import tw from 'twrnc';
+import BottomSheet, {BottomSheetView} from '@gorhom/bottom-sheet';
 
 export default function BookedSchedule() {
+  const sheetRef = useRef < BottomSheet > null;
+  const [isOpen, setIsOpen] = useState(true);
+
+  const snapPoints = ['30%'];
+
   return (
     <View style={tw`bg-black w-8/9 p-6 rounded-xl flex flex-row m-5`}>
       <View style={tw`w-55%`}>
@@ -46,7 +52,14 @@ export default function BookedSchedule() {
             <Text style={tw`text-[#1EF08F]`}>Details</Text>
           </TouchableOpacity>
         </View>
-        <View></View>
+        {/* <BottomSheet
+          ref={sheetRef}
+          snapPoints={snapPoints}
+          enablePanDownToClose={true}>
+          <BottomSheetView>
+            <Text>Hello</Text>
+          </BottomSheetView>
+        </BottomSheet> */}
       </View>
     </View>
   );

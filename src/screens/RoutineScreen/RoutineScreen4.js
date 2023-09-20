@@ -34,19 +34,20 @@ const convertToMinutes = durationString => {
 export default function RoutineScreen2({navigation}) {
   const data = [
     {
-      image: '../../../images/walking.png',
+      image:
+        '/Applications/Documents/programming/UberHolics/images/walking.png',
       duration: '1 minute',
     },
     {
-      image: '../../../images/bus.png',
+      image: '/Applications/Documents/programming/UberHolics/images/bus.png',
       duration: '32 minutes',
     },
     {
-      image: '../../../images/train.png',
+      image: '/Applications/Documents/programming/UberHolics/images/train.png',
       duration: '1 hour 3 minutes',
     },
     {
-      image: '../../../images/car.png',
+      image: '/Applications/Documents/programming/UberHolics/images/car.png',
       duration: '2 hours 3 minutes',
     },
   ];
@@ -78,24 +79,23 @@ export default function RoutineScreen2({navigation}) {
           </View>
           <View style={tw` bg-black w-full h-[0.5px]`} />
         </View>
-        <ScrollView horizontal>
-          <View>
+        <ScrollView horizontal style={tw`bg-gray-200 mb-3 rounded-xl`}>
+          <View style={tw`flex flex-row items-center`}>
             <Image source={require('../../../images/house.png')} />
-            <View />
+            <View style={tw`h-[1px] w-10 bg-black`} />
           </View>
           {data.map((dataObj, index) => (
-            <View key={index} style={tw`bg-red-400`}>
+            <View key={index} style={tw` flex flex-row items-center`}>
               <View>
-                <Image source={{uri: dataObj.image}} />
+                <Image
+                  source={{uri: dataObj.image}}
+                  style={tw`h-10 w-10 m-2 rounded-lg`}
+                />
               </View>
-              <View
-                style={tw`h-[0.5px] w-${
-                  convertToMinutes(dataObj.duration) / totalDuration
-                }`}
-              />
+              <View style={tw`h-[1px] w-10 bg-black`} />
             </View>
           ))}
-          <View>
+          <View style={tw`flex flex-row items-center`}>
             <Image source={require('../../../images/building.png')} />
           </View>
         </ScrollView>

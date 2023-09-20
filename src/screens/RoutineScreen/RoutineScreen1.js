@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -10,9 +10,12 @@ import {
 import tw from 'twrnc';
 
 export default function RoutineScreen1({navigation}) {
+  const [departure, setDeparture] = useState('');
+  const [arrival, setArrival] = useState('');
+
   return (
-    <View style={tw`bg-white h-19/25 rounded-2xl`}>
-      <View style={tw`p-5 flex justify-between h-4/5`}>
+    <View style={tw`bg-white flex-1 rounded-2xl`}>
+      <View style={tw`p-5 flex justify-between h-100%`}>
         <View style={tw`flex justify-start`}>
           <Text style={tw`font-bold`}>Routine</Text>
           <View style={tw`flex flex-row mx-4 h-10/20 py-5`}>
@@ -26,6 +29,7 @@ export default function RoutineScreen1({navigation}) {
                 <Text>Home</Text>
                 <TextInput
                   placeholder="Pick up?"
+                  onChangeText={text => setDeparture(text)}
                   style={tw` my-2 border-b-[0.2px]`}
                 />
               </View>
@@ -33,6 +37,7 @@ export default function RoutineScreen1({navigation}) {
                 <Text>Destination</Text>
                 <TextInput
                   placeholder="Where to?"
+                  onChangeText={text => setArrival(text)}
                   style={tw` my-2 border-b-[0.2px]`}
                 />
               </View>

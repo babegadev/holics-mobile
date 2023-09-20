@@ -25,6 +25,7 @@ import {
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {Provider} from 'react-redux';
 
 import PopupScreen from './screens/PopupScreen';
 import SignupScreen from './screens/SignupScreen';
@@ -35,6 +36,7 @@ import WelcomeScreen from '../trash/WelcomeScreen';
 import RoutineScreen1 from './screens/RoutineScreen/RoutineScreen1';
 import NavOptions from './NavOptions';
 import AuthenticationScreen from './AuthenticationScreen';
+import {store} from './store';
 
 // function Section({ children, title }) {
 //   const isDarkMode = useColorScheme() === 'dark';
@@ -125,44 +127,46 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator screenOptions={{}}>
-        <Stack.Screen
-          name="PopupScreen"
-          component={PopupScreen}
-          options={{
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen
-          name="AuthenticationScreen"
-          component={AuthenticationScreen}
-          options={{
-            headerShown: false,
-            gestureEnabled: false,
-            animation: 'slide_from_bottom',
-          }}
-        />
-        <Stack.Screen
-          name="NavOptions"
-          component={NavOptions}
-          options={{
-            headerShown: false,
-            gestureEnabled: false,
-            animation: 'slide_from_right',
-          }}
-        />
-        <Stack.Screen
-          name="HomeScreen"
-          component={HomeScreen}
-          options={{
-            headerShown: false,
-            gestureEnabled: false,
-            animation: 'slide_from_right',
-          }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Stack.Navigator screenOptions={{}}>
+          <Stack.Screen
+            name="PopupScreen"
+            component={PopupScreen}
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="AuthenticationScreen"
+            component={AuthenticationScreen}
+            options={{
+              headerShown: false,
+              gestureEnabled: false,
+              animation: 'slide_from_bottom',
+            }}
+          />
+          <Stack.Screen
+            name="NavOptions"
+            component={NavOptions}
+            options={{
+              headerShown: false,
+              gestureEnabled: false,
+              animation: 'slide_from_right',
+            }}
+          />
+          <Stack.Screen
+            name="HomeScreen"
+            component={HomeScreen}
+            options={{
+              headerShown: false,
+              gestureEnabled: false,
+              animation: 'slide_from_right',
+            }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
     // <NavigationContainer>
     //   <Stack.Navigator initialRouteName="PopUpScreen" headerMode="none">
     //     <Stack.Screen name="PopUpScreen" component={PopupScreen} />
